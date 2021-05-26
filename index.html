@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Endangerment Prototype</title>
+		<title>My first three.js app</title>
 		<style>
 			body { margin: 0; }
 		</style>
@@ -18,19 +18,20 @@
 		</script>
 		<script type="module">
 
-
+				import * as THREE from './js/three.module.js';
+				import { OrbitControls } from './js/OrbitControls.js';
 
 				async function main(){
 					console.log("In main")
 
-					let camera, scene, renderer, stats, mesh;
+					let camera, scene, renderer, stats, mesh, controls;
 
 
 				async function init() {
 
 				
 				var data = await get_csv("data/positions.csv")
-				console.log(data[1]);
+
 				scene = new THREE.Scene();
 
 				const light1 = new THREE.HemisphereLight( 0xffffff, 0x000088 );
@@ -47,6 +48,7 @@
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				document.body.appendChild( renderer.domElement );
 
+				controls = new OrbitControls( camera, renderer.domElement );
 
 				const geometry = new THREE.IcosahedronGeometry( 0.005, 0 );
 				const material = new THREE.MeshPhongMaterial();
