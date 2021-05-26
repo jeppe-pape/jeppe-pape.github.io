@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>My first three.js app</title>
+		<style>
+			body { margin: 0; }
+		</style>
+	</head>
+	<body>
+		<script src="js/three.js"></script>
+		<script src="js/csv_parse.js"></script>
+		<script> 
+			var get_csv = async function (url){
+				let response = await fetch(url).then(response => response.text().then(data => CSVToArray(data)));
+				return response;
+			}
+		</script>
+		<script type="module">
+
+
+
+				async function main(){
+					console.log("In main")
+
+					let camera, scene, renderer, stats, mesh;
+
+
+				async function init() {
+
+				
+				var data = await get_csv("data/positions.csv")
+				console.log(data[1]);
+				scene = new THREE.Scene();
+
+				const light1 = new THREE.HemisphereLight( 0xffffff, 0x000088 );
+				light1.position.set( - 1, 1.5, 1 );
+				scene.add( light1 );
+
+				const light2 = new THREE.HemisphereLight( 0xffffff, 0x880000, 0.5 );
+				light2.position.set( - 1, - 1.5, - 1 );
+				scene.add( light2 );
+
+				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+				renderer = new THREE.WebGLRenderer({ antialias: true });
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				document.body.appendChild( renderer.domElement );
+
+
+				const geometry = new THREE.IcosahedronGeometry( 0.005, 0 );
+				const material = new THREE.MeshPhongMaterial();
+
+				mesh = new THREE.InstancedMesh( geometry, material, 200000);
+				const matrix = new THREE.Matrix4();
+				console.log(data.length)
+				for (var [i, animal] of data.entries()) {
+					matrix.setPosition( animal[1], animal[2], animal[3])
+					mesh.setMatrixAt(i, matrix);
+				}
+
+				const geometry2 = new THREE.IcosahedronGeometry( 100, 1 );
+				const cube = new THREE.Mesh( geometry2, material);
+				scene.add( mesh );
+				scene.add( cube );
+				camera.position.z = 2;
+				}
+
+				async function animate() {
+					requestAnimationFrame( animate );
+					renderer.render( scene, camera );
+					mesh.rotation.x = time / 1000;
+					time ++;
+				}
+
+					console.log(camera)
+
+					await init();
+					let time = 0;
+					animate();
+				}
+				
+				main();
+		</script>
+	</body>
+</html>
