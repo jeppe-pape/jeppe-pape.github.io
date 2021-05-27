@@ -5,9 +5,19 @@
 		<title>Endangerment Prototype</title>
 		<style>
 			body { margin: 0; }
+			#info {
+				position: absolute;
+				top: 10px;
+				width: 100%;
+				text-align: center;
+				z-index: 100;
+				display:block;
+				color: white;
+			}
 		</style>
 	</head>
 	<body>
+		<div id="info"></div>
 		<script src="js/three.js"></script>
 		<script src="js/csv_parse.js"></script>
 		<script> 
@@ -21,64 +31,133 @@
 				import * as THREE from './js/three.module.js';
 				import { OrbitControls } from './js/OrbitControls.js';
 
-				async function main(){
-					console.log("In main")
+				let camera, scene, renderer, stats, points, line, controls;
+				let time = 0;
 
-					let camera, scene, renderer, stats, mesh, controls;
+				const raycaster = new THREE.Raycaster();
+				const mouse = new THREE.Vector2( 1, 1 );
+				const color = new THREE.Color();
 
+				var pos_data = await get_csv("data/positions.csv")
+				var f_edge_data = await get_csv("data/first_edge.csv")
+				var s_edge_data = await get_csv("data/second_edge.csv")
 
 				async function init() {
 
 				
-				var data = await get_csv("data/positions.csv")
 
-				scene = new THREE.Scene();
 
-				const light1 = new THREE.HemisphereLight( 0xffffff, 0x000088 );
-				light1.position.set( - 1, 1.5, 1 );
-				scene.add( light1 );
+					// SCENE
+					scene = new THREE.Scene();
 
-				const light2 = new THREE.HemisphereLight( 0xffffff, 0x880000, 0.5 );
-				light2.position.set( - 1, - 1.5, - 1 );
-				scene.add( light2 );
+					const light1 = new THREE.HemisphereLight( 0x888888, 0x000088 );
+					light1.position.set( - 1, 1.5, 1 );
+					scene.add( light1 );
 
-				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+					const light2 = new THREE.HemisphereLight( 0xffffff, 0x220022, 0.5 );
+					light2.position.set( - 1, - 1.5, - 1 );
+					scene.add( light2 );
 
-				renderer = new THREE.WebGLRenderer({ antialias: true });
-				renderer.setSize( window.innerWidth, window.innerHeight );
-				document.body.appendChild( renderer.domElement );
+					camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
-				controls = new OrbitControls( camera, renderer.domElement );
+					renderer = new THREE.WebGLRenderer({ antialias: true });
+					renderer.setSize( window.innerWidth, window.innerHeight );
+					document.body.appendChild( renderer.domElement );
 
-				const geometry = new THREE.IcosahedronGeometry( 0.005, 0 );
-				const material = new THREE.MeshPhongMaterial();
+					controls = new OrbitControls( camera, renderer.domElement );
 
-				mesh = new THREE.InstancedMesh( geometry, material, 200000);
-				const matrix = new THREE.Matrix4();
-				console.log(data.length)
-				for (var [i, animal] of data.entries()) {
-					matrix.setPosition( animal[1], animal[2], animal[3])
-					mesh.setMatrixAt(i, matrix);
+
+					// GEOMETRY
+					const geometry = new THREE.IcosahedronGeometry( 0.005, 0 );
+					const material = new THREE.MeshPhongMaterial( {color:0xffffff});
+
+					points = new THREE.InstancedMesh( geometry, material, 200000);
+					const matrix = new THREE.Matrix4();
+
+
+					for (var [i, animal] of pos_data.entries()) {
+						matrix.setPosition( animal[1], animal[2], animal[3])
+						points.setMatrixAt(i, matrix);
+					}
+
+
+
+					const linemat = new THREE.LineBasicMaterial( { color: 0xffffff, transparent:true, opacity: 0.2, lineWidth: 0.1 } );
+
+					const ps = [];
+					for (var [i, edge] of f_edge_data.entries()) {
+						ps.push( edge[1], edge[2], edge[3]);
+						ps.push( s_edge_data[i][1], s_edge_data[i][2], s_edge_data[i][3]);
+
+					}	
+					const linegeo = new THREE.BufferGeometry();
+					linegeo.setAttribute( 'position', new THREE.Float32BufferAttribute( ps, 3))
+
+					line = new THREE.LineSegments( linegeo, linemat );
+
+
+
+
+					scene.add( points );
+					scene.add( line )
+
+					camera.position.z = 1.5;
+
+					window.addEventListener( 'resize', onWindowResize );
+					document.addEventListener( 'mousemove', onMouseMove );
+
 				}
 
-				const geometry2 = new THREE.IcosahedronGeometry( 100, 1 );
-				const cube = new THREE.Mesh( geometry2, material);
-				scene.add( mesh );
-				scene.add( cube );
-				camera.position.z = 2;
+				function onWindowResize() {
+
+					camera.aspect = window.innerWidth / window.innerHeight;
+					camera.updateProjectionMatrix();
+
+					renderer.setSize( window.innerWidth, window.innerHeight );
+
 				}
+
+				function onMouseMove( event ) {
+
+				event.preventDefault();
+
+				mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+				mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+				}
+
+
 
 				async function animate() {
+
+
+
+					raycaster.setFromCamera( mouse, camera );
+
+					const intersection = raycaster.intersectObject( points );
+					if ( intersection.length > 0 ) {
+
+					const instanceId = intersection[ 0 ].instanceId;
+
+					//points.setColorAt( instanceId, color.set("rgb(255, 0, 0)") );
+					//points.instanceColor.needsUpdate = true;
+					console.log(pos_data[instanceId][0]);
+					document.getElementById("info").innerHTML = pos_data[instanceId][0]
+
+				}
 					requestAnimationFrame( animate );
 					renderer.render( scene, camera );
-					mesh.rotation.x = time / 1000;
+
+					points.rotation.x = time / 1000;
+					line.rotation.x = time / 1000;
 					time ++;
 				}
 
-					console.log(camera)
+
+				async function main(){
 
 					await init();
-					let time = 0;
+
 					animate();
 				}
 				
