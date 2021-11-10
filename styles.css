@@ -57,6 +57,16 @@ div.topic {
 
 }
 
+img {
+  max-width: 70%;
+  height: auto;
+  margin: 50px;
+  
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .topic:hover {
   background-color: rgb(200, 200, 200);
 }
