@@ -1,3 +1,7 @@
+@font-face { font-family: Pragmatica; src: url('assets/Pragmatica-ExtraLight.ttf'); }
+@font-face { font-family: Helvetica; src: url('assets/Helvetica.ttf'); }
+@font-face { font-family: Helvetica; font-weight: lighter; src: url('assets/helvetica-light.ttf');}
+
 .center {
   text-align: center;
 
@@ -13,7 +17,12 @@
 }
 p.explain {
   font-size: 100px;
+
   margin: 40px;
+  text-align: 100px;
+}
+p.note {
+  margin-left: 15%;
 }
 
 span.linker {
@@ -26,7 +35,7 @@ span.linker {
   z-index: 6;
 }
 body {
-    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-family:'Helvetica', 'Arial', sans-serif;
     color: rgb(0,0,0);
     font-size: 9pt;
     background-color: rgb(240,240,240);
@@ -41,6 +50,7 @@ h3 {
   margin: 0px;
 }
 p {
+  font-family:'Helvetica', 'Arial', lighter;
   margin:0px;
 }
 h1 {
@@ -61,12 +71,12 @@ img {
   max-width: 70%;
   height: auto;
   margin: 50px;
-  
+
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
 .topic:hover {
-  background-color: rgb(200, 200, 200);
+  background-color: rgb(200, 200, 300);
 }
