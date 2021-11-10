@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Endangerment Prototype</title>
+		<link rel="stylesheet" href="styles.css">
 		<style>
 			body { margin: 0; }
 			#info {
@@ -17,151 +18,30 @@
 		</style>
 	</head>
 	<body>
-		<div id="info"></div>
-		<script src="js/three.js"></script>
-		<script src="js/csv_parse.js"></script>
-		<script> 
-			var get_csv = async function (url){
-				let response = await fetch(url).then(response => response.text().then(data => CSVToArray(data)));
-				return response;
-			}
-		</script>
-		<script type="module">
+			<div class=header>
+				<a href="/index.html"><h1 class=center> Jeppe Pape Møller </h1></a>
+			</div>
 
-				import * as THREE from './js/three.module.js';
-				import { OrbitControls } from './js/OrbitControls.js';
-
-				let camera, scene, renderer, stats, points, line, controls;
-				let time = 0;
-
-				const raycaster = new THREE.Raycaster();
-				const mouse = new THREE.Vector2( 1, 1 );
-				const color = new THREE.Color();
-
-				var pos_data = await get_csv("data/positions.csv")
-				var f_edge_data = await get_csv("data/first_edge.csv")
-				var s_edge_data = await get_csv("data/second_edge.csv")
-
-				async function init() {
-
-				
-
-
-					// SCENE
-					scene = new THREE.Scene();
-
-					const light1 = new THREE.HemisphereLight( 0x888888, 0x000088 );
-					light1.position.set( - 1, 1.5, 1 );
-					scene.add( light1 );
-
-					const light2 = new THREE.HemisphereLight( 0xffffff, 0x220022, 0.5 );
-					light2.position.set( - 1, - 1.5, - 1 );
-					scene.add( light2 );
-
-					camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-
-					renderer = new THREE.WebGLRenderer({ antialias: true });
-					renderer.setSize( window.innerWidth, window.innerHeight );
-					document.body.appendChild( renderer.domElement );
-
-					controls = new OrbitControls( camera, renderer.domElement );
-
-
-					// GEOMETRY
-					const geometry = new THREE.IcosahedronGeometry( 0.005, 0 );
-					const material = new THREE.MeshPhongMaterial( {color:0xffffff});
-
-					points = new THREE.InstancedMesh( geometry, material, 200000);
-					const matrix = new THREE.Matrix4();
-
-
-					for (var [i, animal] of pos_data.entries()) {
-						matrix.setPosition( animal[1], animal[2], animal[3])
-						points.setMatrixAt(i, matrix);
-					}
-
-
-
-					const linemat = new THREE.LineBasicMaterial( { color: 0xffffff, transparent:true, opacity: 0.2, lineWidth: 0.1 } );
-
-					const ps = [];
-					for (var [i, edge] of f_edge_data.entries()) {
-						ps.push( edge[1], edge[2], edge[3]);
-						ps.push( s_edge_data[i][1], s_edge_data[i][2], s_edge_data[i][3]);
-
-					}	
-					const linegeo = new THREE.BufferGeometry();
-					linegeo.setAttribute( 'position', new THREE.Float32BufferAttribute( ps, 3))
-
-					line = new THREE.LineSegments( linegeo, linemat );
-
-
-
-
-					scene.add( points );
-					scene.add( line )
-
-					camera.position.z = 1.5;
-
-					window.addEventListener( 'resize', onWindowResize );
-					document.addEventListener( 'mousemove', onMouseMove );
-
-				}
-
-				function onWindowResize() {
-
-					camera.aspect = window.innerWidth / window.innerHeight;
-					camera.updateProjectionMatrix();
-
-					renderer.setSize( window.innerWidth, window.innerHeight );
-
-				}
-
-				function onMouseMove( event ) {
-
-				event.preventDefault();
-
-				mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-				mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-
-				}
-
-
-
-				async function animate() {
-
-
-
-					raycaster.setFromCamera( mouse, camera );
-
-					const intersection = raycaster.intersectObject( points );
-					if ( intersection.length > 0 ) {
-
-					const instanceId = intersection[ 0 ].instanceId;
-
-					//points.setColorAt( instanceId, color.set("rgb(255, 0, 0)") );
-					//points.instanceColor.needsUpdate = true;
-					console.log(pos_data[instanceId][0]);
-					document.getElementById("info").innerHTML = pos_data[instanceId][0]
-
-				}
-					requestAnimationFrame( animate );
-					renderer.render( scene, camera );
-
-					points.rotation.x = time / 1000;
-					line.rotation.x = time / 1000;
-					time ++;
-				}
-
-
-				async function main(){
-
-					await init();
-
-					animate();
-				}
-				
-				main();
-		</script>
+			<div class=topic>
+			<a href="pages/ravi_kuma.html"><span></span></a>
+			<h3> Ravi Kuma i Pumpehuset </h3>
+			<p> 17. juni 2021 </p>
+		</div>
+		<div class=topic>
+			<h3> Natskov </h3>
+			<p> 13. maj 2020 </p>
+		</div>		
+		<div class=topic>
+			<h3> Endemic Species (demo) </h3>
+			<p> 5. august 2020 </p>
+		</div>		
+		<div class=topic>
+			<h3> Gæstelærer på Engelsholm </h3>
+			<p> 10. juni 2020 </p>
+		</div>
+		<div class=topic>
+			<h3> SeyhanLee </h3>
+			<p> 10. juni 2020 </p>
+		</div>				
 	</body>
 </html>
