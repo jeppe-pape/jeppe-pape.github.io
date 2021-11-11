@@ -1,20 +1,28 @@
 @font-face { font-family: Pragmatica; src: url('assets/Pragmatica-ExtraLight.ttf'); }
 @font-face { font-family: Helvetica; src: url('assets/Helvetica.ttf'); }
-@font-face { font-family: Helvetica; font-weight: lighter; src: url('assets/helvetica-light.ttf');}
+@font-face { font-family: Helvetica; font-weight: lighter; src: url('assets/helvetica_light.ttf');}
 
-.center {
-  text-align: center;
+h1.title {
+  text-align: left;
+  display: inline;
+}
+span.right_header_btn {
+  float: right;
+  padding_right: 20px;
+}
+div.header {
+  background-color: rgb(205, 205, 205);
+  padding: 17px;
+}
 
-}
-.header {
-  background-color: rgb(200, 200, 200);
+div.header_btn {
+  display: inline;
 }
 
-.topic {
-  margin: 0px;
-  padding: 0px;
-  border-width: 0px;
+div.leading_buffer {
+  padding: 30px;
 }
+
 p.explain {
   font-size: 70px;
 
@@ -25,6 +33,9 @@ p.note {
   margin-left: 15%;
 }
 
+p.date {
+  font-size: 10px;
+}
 span.linker {
   position:absolute; 
   width:100%;
@@ -35,10 +46,11 @@ span.linker {
   z-index: 6;
 }
 body {
-    font-family:'Helvetica', 'Arial', sans-serif;
+    font-family:'Helvetica', 'Arial', lighter;
     color: rgb(0,0,0);
-    font-size: 9pt;
-    background-color: rgb(240,240,240);
+    font-size: 20 pt;
+    background-color: rgb(255,255,255);
+    margin: 0px;
 }
 a {
   color: inherit;
@@ -51,16 +63,19 @@ h3 {
 }
 p {
   font-family:'Helvetica', 'Arial', lighter;
-  margin:0px;
+  margin: 0px;
+  margin-left: 4px;
+  font-weight: bold
 }
 h1 {
   margin:  0px 0px 20px 0px;
   padding: 14px;
+  font-size: 18px;
 }
 div.topic {
   padding-top: 5px;
   padding-bottom: 20px;
-  padding-left: 20px;
+  padding-left: 40px;
   position: relative;
   z-index: 2;
 
@@ -78,12 +93,12 @@ img {
 }
 
 .topic:hover {
-  background-color: rgb(150, 150, 255);
+  background-color: rgb(254, 160, 225);
 }
 
 .instagram-media{margin:15px auto !important;}
 iframe {
   max-width: 70%;
   margin: auto;
-  text-align: center;
+
 }
