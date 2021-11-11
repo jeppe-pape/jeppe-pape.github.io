@@ -2,6 +2,11 @@
 @font-face { font-family: Helvetica; src: url('assets/Helvetica.ttf'); }
 @font-face { font-family: Helvetica; font-weight: lighter; src: url('assets/helvetica_light.ttf');}
 
+h2 {
+  font-size: 50px;
+  text-align: center;
+}
+
 h1.title {
   text-align: left;
   display: inline;
@@ -10,6 +15,7 @@ span.right_header_btn {
   float: right;
   padding_right: 20px;
 }
+
 div.header {
   background-color: rgb(205, 205, 205);
   padding: 17px;
@@ -19,15 +25,25 @@ div.header_btn {
   display: inline;
 }
 
+div.body_container {
+  max-width: 80%;
+  margin: auto;
+}
 div.leading_buffer {
   padding: 30px;
 }
 
-p.explain {
-  font-size: 70px;
+div.footer {
+  margin: 100px;
+}
 
+h2.page_title {
+  overflow-x: visible;
   margin: 40px;
-  text-align: 100px;
+  margin-bottom: 100px;
+}
+p.page_date {
+  text-align: center;
 }
 p.note {
   margin-left: 15%;
@@ -75,7 +91,7 @@ h1 {
 div.topic {
   padding-top: 5px;
   padding-bottom: 20px;
-  padding-left: 40px;
+  padding-left: 90px;
   position: relative;
   z-index: 2;
 
@@ -84,16 +100,17 @@ div.topic {
 
 img {
   max-width: 70%;
+
   height: auto;
   margin: 50px;
-
+  margin-bottom: 0px;
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
 .topic:hover {
-  background-color: rgb(254, 160, 225);
+  background-color: rgb(205, 205, 205);
 }
 
 .instagram-media{margin:15px auto !important;}
