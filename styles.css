@@ -26,9 +26,10 @@ div.header_btn {
 }
 
 div.body_container {
-  max-width: 80%;
+  max-width: 50%;
   margin: auto;
 }
+
 div.leading_buffer {
   padding: 30px;
 }
@@ -39,14 +40,13 @@ div.footer {
 
 h2.page_title {
   overflow-x: visible;
-  margin: 40px;
-  margin-bottom: 100px;
+  margin: 10px 0px 100px;
 }
 p.page_date {
+  font-size: 15px;
   text-align: center;
 }
 p.note {
-  margin-left: 15%;
 }
 
 p.date {
@@ -99,7 +99,7 @@ div.topic {
 }
 
 img {
-  max-width: 70%;
+  max-width: 100%;
 
   height: auto;
   margin: 50px;
@@ -118,4 +118,10 @@ iframe {
   max-width: 70%;
   margin: auto;
 
+}
+
+@media only screen and (max-width: 1000px) {
+  div.body_container {
+    max-width: 100%;
+  }
 }
