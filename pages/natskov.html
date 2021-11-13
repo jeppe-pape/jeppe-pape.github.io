@@ -5,6 +5,7 @@
 		<meta charset="utf-8">
 		<title>Jeppe Pape Møller</title>
 		<link rel="stylesheet" href="/styles.css">
+		<script src="/js/lazyimg.js"></script>
 
 	</head>
 	<body>
@@ -31,26 +32,22 @@
 			<p class=explainer>
 				Natskov er mit afgangsprojekt fra Engelsholm Højskole, hvor jeg gik på Audiovisuel Kunst og Design (AVKVJ) i efteråret 2020.
 			</p>
-			<img class=art src="/assets/art/dag_00.png" alt="Art_00" width="1920" >
-			<img class=art src="/assets/art/dag_01.png" alt="Art_01" width="1920" >
-			<img class=art src="/assets/art/dag_02.png" alt="Art_02" width="1920" >
+			<img class="art" src="/assets/art/dag_00.png" loading="lazy" alt="Art_00" width="1920" >
+			<img class="art" src="/assets/art/dag_01.png" loading=lazy alt="Art_01" width="1920" >
+			<img class="art" src="/assets/art/dag_02.png" loading=lazy alt="Art_02" width="1920" >
 			<div class=leading_buffer></div>
 		</div>
 
 		<div class=black>
 			<div class=body_container id="art02">
-				<div class="leading_buffer large"></div>
+				<div class="large_leading_buffer"></div>
 				<video src="/assets/art/gan_00.mp4" autoplay="autoplay" muted="muted"></video>
-				<div class="leading_buffer large"></div>
+				<div class="large_leading_buffer large"></div>
 				<video src="/assets/art/gan_01.mp4" autoplay="autoplay" muted="muted"></video>
-				<div class="leading_buffer large"></div>
+				<div class="large_leading_buffer large"></div>
 				<video src="/assets/art/gan_02.mp4" autoplay="autoplay" muted="muted"></video>
-				<div class="leading_buffer large"></div>
-				<!-- <video src="https://user-images.githubusercontent.com/3874273/141644999-2b17e4d6-cc61-4b4c-bb18-37e6563caafb.mp4" data-canonical-src="https://user-images.githubusercontent.com/3874273/141644999-2b17e4d6-cc61-4b4c-bb18-37e6563caafb.mp4" autoplay="autoplay" muted="muted" class="d-block rounded-bottom-2 width-fit" style="max-height:1080px;">
-	 			 </video> -->
 	 		</div>
+	 		<div class="footer black"></div>
 		</div>		
-
-			<div class="footer black"></div>
 	</body>
 </html>
