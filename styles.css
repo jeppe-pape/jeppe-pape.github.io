@@ -24,6 +24,7 @@ div.header_btn {
   display: inline;
 }
 
+
 div.body_container {
   max-width: 45%;
   margin: auto;
@@ -183,5 +184,8 @@ embed {
   }
   #art01 {
   max-width: 100%;
-}
+  }
+  div.topic {
+    padding-left: 10px;
+  }
 }
