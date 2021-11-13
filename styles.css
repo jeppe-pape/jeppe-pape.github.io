@@ -32,7 +32,7 @@ div.body_container {
 }
 
 #art01 {
-  max-width: 60%;
+  max-width: 45%;
 }
 
 .black {
@@ -42,6 +42,9 @@ div.body_container {
 
 div.leading_buffer {
   padding: 30px;
+}
+.large {
+  padding: 60px;
 }
 
 div.footer {
