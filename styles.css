@@ -45,7 +45,8 @@ div.leading_buffer {
 }
 
 div.footer {
-  margin: 100px;
+  padding-bottom: 100px;
+  max-width: 100%;
 }
 
 h2.page_title {
