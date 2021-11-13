@@ -1,6 +1,7 @@
 @font-face { font-family: Pragmatica; src: url('assets/Pragmatica-ExtraLight.ttf'); }
 @font-face { font-family: Helvetica; src: url('assets/Helvetica.ttf'); }
 @font-face { font-family: Helvetica; font-weight: lighter; src: url('assets/helvetica_light.ttf');}
+@font-face { font-family: Noto; src: url('assets/notoserif-Regular.ttf');}
 
 h2 {
   font-size: 50px;
@@ -26,8 +27,12 @@ div.header_btn {
 }
 
 div.body_container {
-  max-width: 50%;
+  max-width: 45%;
   margin: auto;
+}
+
+#art {
+  max-width: 60%;
 }
 
 div.leading_buffer {
@@ -43,14 +48,23 @@ h2.page_title {
   margin: 10px 0px 100px;
 }
 p.page_date {
+  font-weight: bold;
   font-size: 15px;
   text-align: center;
 }
 p.note {
+  font-size: 13px;
 }
 
 p.date {
+  font-weight: bold;
   font-size: 10px;
+}
+
+p.explainer {
+
+  margin: 30px 30px 0px;
+  line-height: 22px;
 }
 span.linker {
   position:absolute; 
@@ -70,6 +84,7 @@ body {
 }
 a {
   color: inherit;
+  font-weight: bold;
   text-decoration: none; /* no underline */
 }
 
@@ -78,10 +93,9 @@ h3 {
   margin: 0px;
 }
 p {
-  font-family:'Helvetica', 'Arial', lighter;
+  font-family:'Helvetica', 'Arial';
   margin: 0px;
   margin-left: 4px;
-  font-weight: bold
 }
 h1 {
   margin:  0px 0px 20px 0px;
@@ -98,7 +112,13 @@ div.topic {
 
 }
 
+video {
+  max-width: 100%;
+  display: block;
+  margin: auto;
+}
 img {
+
   max-width: 100%;
 
   height: auto;
@@ -108,20 +128,44 @@ img {
   margin-left: auto;
   margin-right: auto;
 }
+.art {
 
-.topic:hover {
-  background-color: rgb(205, 205, 205);
+  image-rendering: pixelated;
 }
 
-.instagram-media{margin:15px auto !important;}
-iframe {
-  max-width: 70%;
+.topic:hover {
+  background-color: rgb(235, 235, 235);
+}
+
+
+/*Instagram Embed*/
+iframe { 
+  display:block;
+  margin: auto !important;
+
+}
+.center {
+  align: center;
+}
+
+/*Youtube Embed*/
+.video-box {
+  margin: 30px 0px 0px;
+  text-align: center;
+}
+
+embed {
+  height: 600px;
+  width: 95%;
+  display: block;
   margin: auto;
 
 }
-
 @media only screen and (max-width: 1000px) {
   div.body_container {
     max-width: 100%;
   }
+  #art {
+  max-width: 100%;
+}
 }

@@ -3,17 +3,52 @@
 	<head>
 
 		<meta charset="utf-8">
-		<title>Ravi Kuma i Pumpehuset</title>
+		<title>Jeppe Pape Møller</title>
 		<link rel="stylesheet" href="/styles.css">
 
 	</head>
 	<body>
-			<div class=header>
-				<a href="/index.html"><h1 class=center> Jeppe Pape Møller </h1></a>
-			</div>
+		<div class=header>
+			<span class=header_btn>
+				<a href="/index.html"><h1 class=title> Jeppe Pape Møller </h1></a>
+			</span>
+			<span class=right_header_btn id=github_btn>
+				<a href="/index.html"><h1 class=title> Kontakt </h1></a>				
+			</span>
 
-			<p class=explain>
-				VJ til den danske hiphop-duo Ravi Kuma's koncert i Pumpehuset:
+			<span class=right_header_btn id=contact_btn>
+				<a href="/index.html"><h1 class=title> Github </h1></a>				
+			</span>
+		</div>
+
+		<div class=leading_buffer></div>
+
+		<p class=page_date>maj 2021</p>
+		<h2 class=page_title>Endemiske Arter (Demo)</h2>
+
+		<div class=body_container>
+
+			<p class=explainer>
+				Dette er ikke et færdigt projekt, men en proof-of-concept, som jeg lavede i samarbejde med kunstneren Sofia Crespo i forbindelse med hendes Artist in Residency hos Facebook i sommeren 2021.
 			</p>
+			<p class=explainer>
+				Projektet bestod i en visualisering af endemiske (udrydningstruede) dyre- og plantearter.
+				Sofia var inspireret af netværksteori og organiske strukturer og søgte at vise, i hvilken grad forskellige truede arter kunne siges at være i centrum eller perferien af global, digital omtale. 
+			</p>
+			<p class=explainer>
+				På et teknisk niveau var der tale om en web-baseret platform, der skulle kombinere data om forskellige arters grad af trusselsgrad med deres niveau af omtale på sociale medier (twitter i dette tilfælde). <br>
+				Det var et vældigt interessant projekt, da det kombinerede mange forskellige grene inden for datavidenskab, web-scraping, 3d-grafik og grafteori. Desuden var det en læringsøvelse for mig, da jeg ikke havde nogen forudgående erfaring med javaScript, eller web-design i det hele taget.
+			</p>
+			<p class=explainer>
+				Demoen, som er udført på sammenlagt omkring 2 uger, kan ses nedenfor:
+			</p>
+			<div class=leading_buffer></div>
+			<embed type="text/html" src="/pages/endemic_viz.html" width="100%">
+			<p class=explainer>
+				Data brugt er fra <a href="https://www.iucnredlist.org/">ICUN's Redlist</a> samt en co-occurence-analyse af hashtags i twitteropslag. Kode udviklet kan ses her: <a href="https://github.com/jeppe-pape/twitter_endemic">Github</a>.
+			</p>
+
+		</div>		
+		<div class=footer></div>
 	</body>
 </html>
