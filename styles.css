@@ -1,7 +1,5 @@
-@font-face { font-family: Pragmatica; src: url('assets/Pragmatica-ExtraLight.ttf'); }
 @font-face { font-family: Helvetica; src: url('assets/Helvetica.ttf'); }
 @font-face { font-family: Helvetica; font-weight: lighter; src: url('assets/helvetica_light.ttf');}
-@font-face { font-family: Noto; src: url('assets/notoserif-Regular.ttf');}
 
 h2 {
   font-size: 50px;
